@@ -30,6 +30,7 @@ export const authorize = (password, email) => {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify({
       password: password,
       email: email
@@ -38,14 +39,7 @@ export const authorize = (password, email) => {
   .then(checkResponse)
 };
 
-export const checkToken = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    }
-  })
+export const checkToken = () => {
+  return fetch(`${BASE_URL}/users/me`, {credentials: 'include'})
   .then(checkResponse)
 }

@@ -53,6 +53,7 @@ function App() {
       .then(([ userData, cardsData ]) => {
         setCurrentUser(userData);
         setCards(cardsData);
+        setEmail(userData.email);
       })
       .catch((err) => {
         console.error(err);
@@ -61,14 +62,15 @@ function App() {
   }, [loggedIn])
 
   function checkToken() {
-    const jwt = localStorage.getItem('jwt');
+    const jwt = localStorage.getItem('jwtM');
     if (jwt) {
-      auth.checkToken(jwt)
+      auth.checkToken()
       .then((res) => {
+        console.log(res);
+        console.log(res.data);
         if (res) {
           setLoggedIn(true);
           navigate("/", {replace: true})
-          setEmail(res.data.email);
         }
       })
       .catch((err) => {
@@ -97,7 +99,7 @@ function App() {
         setLoggedIn(true);
         navigate("/", { replace: true });
         setEmail(email);
-        localStorage.setItem('jwt', data.token);
+        localStorage.setItem('jwtM', true);
 
       })
       .catch((err) => {
@@ -106,7 +108,7 @@ function App() {
   }
 
   function handleLogout() {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('jwtM');
     setLoggedIn(false);
   }
 
