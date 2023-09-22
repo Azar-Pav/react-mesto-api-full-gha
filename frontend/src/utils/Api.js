@@ -99,9 +99,8 @@ class Api {
 }
 
 const apiOptions = {
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-68',
+  baseUrl: 'https://mesto.backend.azarpav.nomoredomainsrocks.ru',
   headers: {
-    authorization: 'fbe3a106-0f82-4218-b4b6-3d8c23a11f98',
     'Content-Type': 'application/json'
   }
 };

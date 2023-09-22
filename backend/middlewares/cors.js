@@ -1,8 +1,12 @@
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
 const allowedCors = [
+  'https://mesto.backend.azarpav.nomoredomainsrocks.ru',
+  'http://mesto.backend.azarpav.nomoredomainsrocks.ru',
+  'https://mesto.frontend.azarpav.nomoredomainsrocks.ru',
+  'http://mesto.frontend.azarpav.nomoredomainsrocks.ru',
   'https://localhost:3000',
-  'https://localhost:3001',
+  'http://localhost:3000',
 ];
 
 module.exports = (req, res, next) => {
