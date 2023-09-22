@@ -1,9 +1,10 @@
 
 //отвечает за взаимодействие с сервером
 class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl, headers, credentials }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+    this._credentials = credentials;
   }
 
   _checkResponse(res) {
@@ -17,7 +18,8 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers
+      headers: this._headers,
+      credentials: this._credentials,
     })
       .then((res) => {
         return this._checkResponse(res)
@@ -26,7 +28,8 @@ class Api {
 
   getUser() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers
+      headers: this._headers,
+      credentials: this._credentials,
     })
       .then((res) => {
         return this._checkResponse(res)
@@ -37,6 +40,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
+      credentials: this._credentials,
       body: JSON.stringify({ name, about })
     })
       .then((res) => {
@@ -48,6 +52,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
+      credentials: this._credentials,
       body: JSON.stringify({ avatar })
     })
       .then((res) => {
@@ -59,6 +64,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
+      credentials: this._credentials,
       body: JSON.stringify({ name, link })
     })
       .then((res) => {
@@ -69,7 +75,8 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: this._headers,
+      credentials: this._credentials,
     })
       .then((res) => {
         return this._checkResponse(res)
@@ -79,7 +86,8 @@ class Api {
   putLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
-      headers: this._headers
+      headers: this._headers,
+      credentials: this._credentials,
     })
       .then((res) => {
         return this._checkResponse(res)
@@ -89,7 +97,8 @@ class Api {
   deleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: this._headers,
+      credentials: this._credentials,
     })
       .then((res) => {
         return this._checkResponse(res)
@@ -102,7 +111,8 @@ const apiOptions = {
   baseUrl: 'https://mesto.backend.azarpav.nomoredomainsrocks.ru',
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  credentials: 'include',
 };
 
 const api = new Api(apiOptions);

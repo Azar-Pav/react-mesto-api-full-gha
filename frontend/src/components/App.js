@@ -66,8 +66,6 @@ function App() {
     if (jwt) {
       auth.checkToken()
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
         if (res) {
           setLoggedIn(true);
           navigate("/", {replace: true})
@@ -182,7 +180,7 @@ function App() {
   };
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     const renderCard = (newCard) => {
       setCards((state) => state.map(
