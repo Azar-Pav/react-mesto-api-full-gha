@@ -5,9 +5,11 @@ const { errors } = require('celebrate');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { rateLimit } = require('express-rate-limit');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const router = require('./routes/index');
 const errorsHandler = require('./middlewares/errorsHandler');
+const cors = require('./middlewares/cors');
 
 const {
   PORT = 3000,
@@ -29,13 +31,17 @@ const app = express();
 
 app.use(express.static('public'));
 
+app.use(cors);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cookieParser());
 app.use(limiter);
 
+app.use(requestLogger);
 app.use(router);
+app.use(errorLogger);
 
 app.use(errors());
 
