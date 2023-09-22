@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.57.81
+IP 158.160.57.81
 
 Frontend https://mesto.frontend.azarpav.nomoredomainsrocks.ru
 
